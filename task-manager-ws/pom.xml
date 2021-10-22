@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <artifactId>task-manager-ws</artifactId>
+    <packaging>jar</packaging>
+    
+    <name>Api Rest</name>
+    <description>Web Service para Administracion de Tareas</description>
+    <url>http://maven.apache.org</url>
+    
+    <parent>
+     <groupId>org.springframework.boot</groupId>
+	 <artifactId>spring-boot-starter-parent</artifactId>
+	 <version>2.2.6.RELEASE</version>
+  	</parent>
+  	
+  	<properties>
+	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	  <start-class>com.coopeuch.taskmanager.ws.Application</start-class>
+	  <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	  <java.version>1.8</java.version>
+	  <lombok.version>1.18.12</lombok.version>
+	  <log4jdbc.log4j2.version>1.16</log4jdbc.log4j2.version>
+	  <spring-loaded.version>1.2.8.RELEASE</spring-loaded.version>
+	  <maven.compiler.target>1.8</maven.compiler.target>
+	  <maven.compiler.source>1.8</maven.compiler.source>
+	  <current.basedir>${project.basedir}</current.basedir>
+	  <jar.name>task-manager-ws</jar.name>
+	</properties>
+	
+    <dependencies>
+    	<dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-web</artifactId>
+	    </dependency>
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+		<dependency>
+		    <groupId>commons-validator</groupId>
+		    <artifactId>commons-validator</artifactId>
+		    <version>1.7</version>
+		</dependency>
+		<dependency>
+		    <groupId>io.springfox</groupId>
+		    <artifactId>springfox-boot-starter</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <scope>runtime</scope>
+		</dependency>
+    </dependencies>
+    <build>
+    	<finalName>${jar.name}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                	<mainClass>com.coopeuch.taskmanager.ws.Application</mainClass>
+			        <executable>true</executable>
+			    </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <profiles>
+	    <profile>
+	      <id>dev</id>
+	      <properties>
+	        <active.profile>dev</active.profile>
+	        <excludeDevtools>false</excludeDevtools>
+	      </properties>
+	      <activation>
+	        <activeByDefault>true</activeByDefault>
+	      </activation>
+	    </profile>
+	    <profile>
+	      <id>qa</id>
+	      <properties>
+	        <active.profile>qa</active.profile>
+	        <excludeDevtools>true</excludeDevtools>
+	      </properties>
+	    </profile>
+	    <profile>
+	      <id>prd</id>
+	      <properties>
+	        <active.profile>prd</active.profile>
+	        <excludeDevtools>true</excludeDevtools>
+	      </properties>
+	    </profile>
+    </profiles>
+    
+</project>
